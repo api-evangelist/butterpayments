@@ -1,0 +1,56 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.services.butterpayments.com/authentication
+docs: https://docs.services.butterpayments.com/authentication
+summary:
+  types: [apiKey, http, hmac]
+  api_key_in: [header]
+  api_key_header: x-api-key
+  webhook_signing: HMAC-SHA256
+  notes: >-
+    No machine-readable OpenAPI is published; this profile is captured from the
+    Recover Enterprise API authentication documentation.
+schemes:
+  - name: ButterApiKey
+    type: apiKey
+    in: header
+    parameter: x-api-key
+    applies_to: Recover Enterprise API (Butter-hosted endpoints)
+    provisioning: Butter issues API keys per environment (sandbox and production) during the integration phase.
+    example: "curl 'https://api.butterpayments.com/recover/payments' --header 'x-api-key: <BUTTER_API_KEY>'"
+    sources: [https://docs.services.butterpayments.com/authentication]
+  - name: MerchantApiKey
+    type: apiKey
+    in: header
+    parameter: x-api-key
+    applies_to: Merchant-provided endpoints (Retry Status, Retry Results, End of Dunning)
+    notes: Merchants may secure their own inbound endpoints with an API key shared with Butter.
+    sources: [https://docs.services.butterpayments.com/authentication]
+  - name: MerchantBasicAuth
+    type: http
+    scheme: basic
+    applies_to: Merchant-provided endpoints
+    notes: HTTP Basic (base64 username:password) is a supported scheme for merchant endpoints.
+    sources: [https://docs.services.butterpayments.com/authentication]
+  - name: HTTPBasic
+    type: http
+    scheme: basic
+    applies_to: Disputes / Data Collection API (api.disputes.services.butterpayments.com Ping health check)
+    sources: [https://docs.services.butterpayments.com/ping]
+  - name: WebhookSignature
+    type: hmac
+    algorithm: HMAC-SHA256
+    applies_to: Butter-sent webhooks (Retry Results, End of Dunning, Disputes)
+    signature_header: X-Butter-Webhook-Signature
+    expiration_header: X-Butter-Webhook-Expiration
+    signing: >-
+      HMAC-SHA256 over "{json_payload}+{expiration}" using the Butter-provided signing
+      secret as the key; compare to X-Butter-Webhook-Signature and verify X-Butter-Webhook-Expiration.
+    sources: [https://docs.services.butterpayments.com/webhook-signature-verification]
+ip_allowlisting:
+  supported: true
+  notes: Recover source IPs can be provided on request to allowlist inbound traffic.
+vault_keys:
+  merchant_key: Directs card element requests to a dedicated proxy and secure container.
+  source_id: Represents a specific PSP account where card payment methods are created after vaulting.
+  source: https://docs.services.butterpayments.com/api-key-provisioning
