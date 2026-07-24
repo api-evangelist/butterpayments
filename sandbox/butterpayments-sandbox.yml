@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source:
+  - https://docs.services.butterpayments.com/integration-guide
+  - https://docs.services.butterpayments.com/api-key-provisioning
+summary: >-
+  Butter provisions a separate API-key pair per environment (sandbox and production). Sandbox testing
+  is run against the same Recover Payments URL using a dedicated sandbox API key issued by the assigned
+  Butter Solutions Engineer. Butter does not publish self-serve magic test-card numbers; test cases are
+  validated jointly with the Solutions Engineer.
+environments:
+  - name: sandbox
+    keys: Butter issues a dedicated sandbox API key (plus Merchant Key + Source ID pair for vaulting).
+  - name: production
+    keys: Separate production API-key pair issued at go-live.
+recover_testing:
+  endpoint: https://api.butterpayments.com/recover/payments
+  note: >-
+    Both test-failures and test-successes are POSTed to the production Payments URL using the sandbox
+    API key; no separate sandbox host.
+merchant_sandbox_endpoints:
+  required: [Retry Status endpoint]
+  conditional: [Retry Results webhook consumer, End of Dunning webhook consumer]
+  note: Merchant must expose sandbox versions of its endpoints and share sandbox credentials with Butter.
+vaulting_sandbox:
+  note: Merchant provisions test PSP keys (e.g. a Stripe restricted key) for a sandbox account before production.
+pre_launch:
+  data_ingest_window_days: 7
+  note: Payment events flow to Recover at least 7 days before launch; no failed payments are retried during this phase.
+published_test_values: none

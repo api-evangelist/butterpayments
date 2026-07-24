@@ -1,0 +1,56 @@
+generated: '2026-07-18'
+method: derived
+source:
+  - https://docs.services.butterpayments.com/recover-payment-object-properties
+  - https://docs.services.butterpayments.com/api-reference
+note: >-
+  Derived from the documented Recover payment-event object (no machine-readable OpenAPI is published).
+  IDs shown are merchant/PSP-supplied references, not Butter-minted resources.
+entities:
+  - name: customer
+    id_field: id
+    fields: [id, psp_id, created_at, postal_code]
+  - name: subscription
+    id_field: id
+    fields: [id, start_date, end_date, discounted_or_free_period, product_id, billing]
+  - name: invoice
+    id_field: id
+    fields: [id, created_at]
+  - name: transaction
+    id_field: id
+    fields: [id, psp_transaction_id, acquirer_country, amount, psp, currency, funding_source, payment_method_id, psp_transaction_created_at, outcome, network_transaction_id, mid, reporting_group, auth, bin, captured, issuer_country, refunded, scheme, success]
+  - name: payment_method
+    id_field: payment_method_id
+    fields: [payment_method_id, token, bin, network_transaction_id, billing_address]
+  - name: outcome
+    embedded_in: transaction
+    fields: [raw_response_message, psp_response_message, processor_response_code, network_status, response_type]
+relationships:
+  - from: subscription
+    to: customer
+    type: belongs_to
+    via: customer.id
+  - from: invoice
+    to: subscription
+    type: belongs_to
+    via: subscription.id
+  - from: transaction
+    to: invoice
+    type: belongs_to
+    via: invoice.id
+  - from: transaction
+    to: payment_method
+    type: belongs_to
+    via: payment_method_id
+  - from: transaction
+    to: outcome
+    type: has_one
+    via: outcome
+  - from: customer
+    to: subscription
+    type: has_many
+    via: customer.id
+  - from: invoice
+    to: transaction
+    type: has_many
+    via: invoice.id

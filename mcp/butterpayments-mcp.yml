@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: https://docs.services.butterpayments.com/api-reference
+note: >-
+  No official hosted/remote MCP server is published by Butter. This is a candidate tool list derived
+  from the documented Recover Enterprise API operations (Butter publishes no machine-readable OpenAPI).
+server:
+  name: butterpayments
+  transport: http
+tools:
+  - name: submit_payment_event
+    description: Submit a standardized successful or failed payment event to Recover.
+    method: POST
+    path: /payments
+    source_operation: "docs: api-reference POST /payments"
+  - name: submit_payment_method_update
+    description: Notify Recover of a customer payment-method add, update, or removal.
+    method: POST
+    path: /payment_method_updates
+    source_operation: "docs: api-reference POST /payment_method_updates"
+  - name: ping
+    description: Health check and credential validation for the Disputes API.
+    method: GET
+    path: /
+    host: https://api.disputes.services.butterpayments.com/
+    source_operation: "docs: ping"
+merchant_provided_endpoints:
+  note: >-
+    Recover also calls merchant-hosted endpoints (POST /retry/{invoice_id}, Retry Results, End of Dunning);
+    these are implemented by the merchant, not the Butter API, so they are not exposed as MCP tools here.

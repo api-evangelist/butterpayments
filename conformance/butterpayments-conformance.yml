@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source:
+  - https://security.butterpayments.com/
+  - https://butterpayments.com/security
+  - https://docs.services.butterpayments.com/security-and-compliance
+  - https://docs.services.butterpayments.com/vault
+standards:
+  - id: pci-dss
+    conforms: true
+    level: "Level 2"
+    evidence: >-
+      PCI DSS Level 2 stated on butterpayments.com/security; Card Vault uses AES256-GCM envelope
+      encryption and secure iframe elements to keep merchants out of PCI scope; PCI-DSS AOC available on request.
+  - id: soc2-type2
+    conforms: true
+    evidence: SOC 2 Type 2 report available on request (security.butterpayments.com, Secureframe-monitored).
+  - id: hipaa
+    conforms: true
+    evidence: HIPAA compliance evidence available on request (security.butterpayments.com).
+  - id: hmac-webhook-signing
+    conforms: true
+    evidence: HMAC-SHA256 signed webhooks with X-Butter-Webhook-Signature and X-Butter-Webhook-Expiration.
+  - id: nist-fips-encryption
+    conforms: true
+    evidence: Card vaulting uses NIST and FIPS-compliant encryption algorithms (security-and-compliance doc).
+  - id: oauth2
+    conforms: false
+    evidence: API-key + HMAC + Basic Auth only; no OAuth2/OIDC documented.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: No application/problem+json error format documented.
+  - id: iso-27001
+    conforms: false
+    evidence: Not claimed on the trust center or security pages.
+compliance_program:
+  monitored_by: Secureframe
+  url: https://security.butterpayments.com/
+  documents_on_request: [SOC 2 Type 2 report, PCI DSS AOC, HIPAA evidence, third-party penetration test results]

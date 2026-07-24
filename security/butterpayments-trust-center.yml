@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+probe: true
+source: https://security.butterpayments.com/
+url: https://security.butterpayments.com/
+monitored_by: Secureframe
+certifications:
+- SOC 2 Type 2
+- HIPAA
+- PCI DSS Level 2
+documents_on_request:
+- SOC 2 Type 2 report
+- PCI DSS AOC
+- HIPAA compliance evidence
+- third-party penetration test results
+security_contact: security@butterpayments.com
+evidence:
+- source: https://security.butterpayments.com/
+  keywords:
+  - soc 2
+  - soc2
+  - hipaa
+  - trust center
+  - secureframe
+- source: https://butterpayments.com/security
+  keywords:
+  - soc 2 type 2
+  - pci dss level 2

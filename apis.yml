@@ -1,22 +1,71 @@
 aid: butterpayments
 name: Butterpayments
-description: 'Butterpayments is a company surfaced as a portfolio company of norwest-venture-partners
-  and added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: >-
+  Butter Payments is a payment recovery and involuntary-churn platform that uses machine learning to
+  recover revenue from failed subscription payments. Its Recover product ingests real-time transaction
+  and payment-method events, optimizes retry timing, and reports outcomes back to merchants via
+  HMAC-SHA256 signed webhooks; Dispute (powered by Verifi) intercepts chargebacks and runs Rapid Dispute
+  Resolution; PaymentScore identifies recoverable failed payments; and a PCI DSS Level 2 Card Vault
+  secures card data behind a secure-iframe element. Butter integrates turnkey with Stripe Billing,
+  Braintree, and Recharge, or directly through the Recover Enterprise API.
 url: https://raw.githubusercontent.com/api-evangelist/butterpayments/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/6570760e6e7b5aa59f8f2452/657b7105d992d17f87a2d0e2_hero-img-m.avif
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - norwest-venture-partners
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-- Unknown
-apis: []
+- Payments
+- Payment Recovery
+- Subscriptions
+- Dunning
+- Involuntary Churn
+- Dispute Prevention
+- Chargebacks
+- Card Vault
+- Fintech
+- Machine Learning
+apis:
+- name: Recover Enterprise API
+  description: >-
+    Source-agnostic payment-event ingestion API for payment recovery. Merchants POST standardized
+    successful and failed payment events and payment-method updates; Recover optimizes retry timing and
+    reports retry outcomes and end-of-dunning back through signed webhooks.
+  humanURL: https://docs.services.butterpayments.com/api-reference
+  baseURL: https://api.butterpayments.com
+  tags:
+  - Payments
+  - Payment Recovery
+  - Dunning
+  properties:
+  - type: APIReference
+    url: https://docs.services.butterpayments.com/api-reference
+  - type: Authentication
+    url: authentication/butterpayments-authentication.yml
+  - type: Webhooks
+    url: asyncapi/butterpayments-webhooks.yml
+  - type: DataModel
+    url: data-model/butterpayments-data-model.yml
+  - type: MCPServer
+    url: mcp/butterpayments-mcp.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +74,52 @@ maintainers:
 common:
 - type: Website
   url: https://butterpayments.com
+- type: DeveloperPortal
+  url: https://docs.services.butterpayments.com/
+- type: Documentation
+  url: https://docs.services.butterpayments.com/
+- type: APIReference
+  url: https://docs.services.butterpayments.com/api-reference
+- type: GettingStarted
+  url: https://docs.services.butterpayments.com/integration-guide
+- type: Blog
+  url: https://butterpayments.com/blog
+- type: Support
+  url: https://butterpayments.com/faq
+- type: Pricing
+  url: https://butterpayments.com/pricing
+- type: TermsOfService
+  url: https://butterpayments.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://butterpayments.com/privacy-policy
+- type: Authentication
+  url: authentication/butterpayments-authentication.yml
+- type: Conventions
+  url: conventions/butterpayments-conventions.yml
+- type: Webhooks
+  url: asyncapi/butterpayments-webhooks.yml
+- type: Components
+  url: components/butterpayments-components.yml
+- type: Sandbox
+  url: sandbox/butterpayments-sandbox.yml
+- type: DataModel
+  url: data-model/butterpayments-data-model.yml
+- type: MCPServer
+  url: mcp/butterpayments-mcp.yml
+- type: LLMsTxt
+  url: llms/butterpayments-llms.txt
+- type: Conformance
+  url: conformance/butterpayments-conformance.yml
+- type: Compliance
+  url: https://security.butterpayments.com/
+- type: TrustCenter
+  url: security/butterpayments-trust-center.yml
+- type: DomainSecurity
+  url: security/butterpayments-domain-security.yml
+- type: WellKnown
+  url: well-known/butterpayments-well-known.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

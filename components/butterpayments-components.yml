@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source:
+  - https://docs.services.butterpayments.com/vault
+  - https://docs.services.butterpayments.com/butter-form-element-stripe-cloned
+  - https://docs.services.butterpayments.com/security-and-compliance
+summary: >-
+  Butter ships client-side embeddable UI for secure card capture — a hosted secure-iframe card
+  element that keeps card data off the merchant's servers and out of PCI scope. Distinct from
+  server-side SDKs (none published).
+families:
+  - name: Butter Card Vault Elements
+    kind: secure-iframe-element
+    description: >-
+      Embedded iframe secure element that captures card data on the checkout page, encrypts it, and
+      forwards it to Butter's vaulting proxy so card data never touches merchant servers.
+    frameworks: [react, vanilla-javascript]
+    customizable: true
+    security: AES256-GCM envelope encryption, dedicated merchant container vault, UUID card references
+    docs: https://docs.services.butterpayments.com/vault
+  - name: Butter Form Element (Stripe)
+    kind: embedded-form
+    description: >-
+      Prebuilt form element for Stripe payments with installation, form properties, Tailwind CSS
+      styling, alternate payment methods, and error handling.
+    frameworks: [react, vanilla-javascript]
+    styling: Tailwind CSS
+    docs: https://docs.services.butterpayments.com/butter-form-element-stripe-cloned
+vault_partner:
+  name: Basis Theory
+  url: https://www.basistheory.com/security
+  role: Underlying PCI-certified vaulting/tokenization partner.
+direct_api:
+  available: true
+  note: Direct Vault API access is offered for mobile/backend use but requires the merchant's own PCI DSS AOC.

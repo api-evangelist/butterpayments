@@ -1,0 +1,60 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.services.butterpayments.com/api-reference
+type: Webhooks
+spec_type: none
+summary: >-
+  Butter Recover and Dispute deliver events to merchant-provided endpoints via HTTP POST.
+  Butter publishes no AsyncAPI document; this is the documented webhook catalog. All Butter-sent
+  webhooks are signed with HMAC-SHA256 (X-Butter-Webhook-Signature + X-Butter-Webhook-Expiration).
+authentication:
+  scheme: HMAC-SHA256
+  signature_header: X-Butter-Webhook-Signature
+  expiration_header: X-Butter-Webhook-Expiration
+  verification_docs: https://docs.services.butterpayments.com/webhook-signature-verification
+webhooks:
+  - name: RetryResults
+    direction: butter-to-merchant
+    method: POST
+    delivered_to: merchant-provided endpoint
+    description: >-
+      Real-time outcome of each payment retry attempt (success true/false), enabling merchants to
+      reconcile payments in their subscription management system.
+    payload_fields: [timestamp, butter_id, customer_id, subscription_id, invoice_id, transaction_id, original_psp_transaction_id, psp_transactions, original_amount, amount_collected, currency, success, dunning_complete, custom]
+    ack_response: {detail: "Event delivered successfully"}
+    docs: https://docs.services.butterpayments.com/retry-results
+  - name: EndOfDunning
+    direction: butter-to-merchant
+    method: POST
+    delivered_to: merchant-provided endpoint
+    description: >-
+      Sent when the dunning process for an invoice completes and no further retries will be attempted;
+      signals the merchant to take end-of-dunning subscription actions.
+    payload_fields: [timestamp, invoice_id, recovered, custom]
+    ack_response: {detail: "Event delivered successfully"}
+    docs: https://docs.services.butterpayments.com/end-of-dunning
+  - name: DisputesWebhook
+    direction: butter-to-merchant
+    method: POST
+    delivered_to: merchant-provided endpoint
+    description: >-
+      Dispute events from Butter's Verifi-powered dispute prevention service; onboarded by providing a
+      valid endpoint URL and validating the Butter-issued signing key.
+    docs: https://docs.services.butterpayments.com/disputes-webhooks
+  - name: VerifiRDRWebhookEvent
+    direction: butter-to-merchant
+    method: POST
+    delivered_to: merchant-provided endpoint
+    description: >-
+      Verifi Rapid Dispute Resolution (RDR) event with header spec, JSON payload, and signature
+      verification for streamlined dispute resolution.
+    docs: https://docs.services.butterpayments.com/verifi-rdr-webhook-event
+merchant_callbacks:
+  - name: RetryStatus
+    direction: butter-to-merchant
+    method: POST
+    path: /retry/{invoice_id}
+    description: >-
+      Final eligibility check Recover calls before submitting a retry (e.g. cancel if the user churned).
+      Returns retry (bool), reason, amount, metadata, and payment_methods.
+    docs: https://docs.services.butterpayments.com/api-reference

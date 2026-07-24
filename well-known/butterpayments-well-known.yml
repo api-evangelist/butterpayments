@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of the Butter Payments hosts
+note: >-
+  No genuine /.well-known/ documents were found. The marketing host butterpayments.com returns a
+  CDN propagation placeholder ("The site has finished propagating") with HTTP 200 for every path,
+  including /.well-known/security.txt, /.well-known/openid-configuration and /.well-known/ai-plugin.json,
+  so none of those 200s are real documents. The API hosts return 403/404. No raw files were saved.
+hosts:
+  - host: https://butterpayments.com
+    documents:
+      - {path: /.well-known/security.txt, status: 200, genuine: false, reason: propagation-placeholder}
+      - {path: /.well-known/openid-configuration, status: 200, genuine: false, reason: propagation-placeholder}
+      - {path: /.well-known/oauth-authorization-server, status: 200, genuine: false, reason: propagation-placeholder}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 200, genuine: false, reason: propagation-placeholder}
+  - host: https://api.butterpayments.com
+    documents:
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/oauth-authorization-server, status: 403}
+      - {path: /.well-known/api-catalog, status: 403}
+      - {path: /.well-known/ai-plugin.json, status: 403}
+  - host: https://api.disputes.services.butterpayments.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://docs.services.butterpayments.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
