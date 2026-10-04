@@ -55,7 +55,7 @@ tags:
 - Chargebacks
 - Card Vault
 - Fintech
-- Machine-Learning
+- Machine Learning
 tags_raw:
 - Company
 - Payments
@@ -68,6 +68,7 @@ tags_raw:
 - Card Vault
 - Fintech
 - Machine Learning
+- Machine-Learning
 apis:
 - name: Recover Enterprise API
   description: >-
