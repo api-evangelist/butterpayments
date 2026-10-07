@@ -1,0 +1,24 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.butterpayments.com/pricing/
+sources:
+- https://www.butterpayments.com/pricing/
+- https://butterpayments.com/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: ad-valorem
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: false
+note: No numeric price is published on the pricing page; Page describes a revenue-share model ('Butter
+  takes a small percentage of the revenue associated with each invoice recovered') but states no numeric
+  rate; percentage is set via a payment health analysis. Dollar figures shown are only from a revenue
+  estimator tool, not prices.
+plan_count: 0
+plans: []
